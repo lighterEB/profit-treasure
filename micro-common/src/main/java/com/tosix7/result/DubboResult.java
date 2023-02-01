@@ -1,6 +1,10 @@
 package com.tosix7.result;
 
+import com.tosix7.constant.ResultStatusImpl;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 统一duboo接口调用服务类
@@ -9,59 +13,25 @@ import java.io.Serializable;
 public class DubboResult<T> implements Serializable {
 
     /**
-     * 结果状态码
+     * 返回状态码
      */
     private Integer code;
-
     /**
-     * 结果信息
+     * 返回结果信息
      */
     private String message;
-
     /**
      * 返回的数据
      */
-    private T data;
+    private Object data;
 
-    @Override
-    public String toString() {
-        return "DubboResult{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                '}';
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
+    public DubboResult(ResultStatusImpl resultStatus, Object data) {
+        this.code = resultStatus.errorCode();
+        this.message = resultStatus.errorMsg();
         this.data = data;
     }
 
-    public DubboResult(Integer code, String message, T data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
-    }
-
-    public DubboResult() {
+    public static DubboResult<Void> success(){
+        return new DubboResult<Void>(ResultStatusImpl.SUCCESS, null);
     }
 }

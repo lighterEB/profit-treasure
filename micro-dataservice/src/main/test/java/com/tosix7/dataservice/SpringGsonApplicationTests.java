@@ -1,20 +1,24 @@
 package com.tosix7.dataservice;
 
-import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
+import com.tosix7.dataservice.mapper.ProductMapper;
+import com.tosix7.info.ProductInfo;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
 @SpringBootTest
-@EnableDubbo
 class DataServiceApplicationTests {
 
+    @Autowired
+    ProductMapper productMapper;
+
     @Test
-    void contextLoads() throws IOException {
-        System.out.println("Dubbo Provider started successfully...");
-        System.in.read();
+    void contextLoads() {
+        ProductInfo productInfo = productMapper.selectByPrimaryKey(1);
+
+        System.out.printf(productInfo.toString());
     }
 
 }
