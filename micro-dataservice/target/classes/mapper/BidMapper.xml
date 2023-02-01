@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tosix7.dataservice.mapper.BidMapper">
+    <resultMap id="BaseResultMap" type="com.tosix7.info.BidInfo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="prod_id" jdbcType="INTEGER" property="prodId" />
+        <result column="uid" jdbcType="INTEGER" property="uid" />
+        <result column="bid_money" jdbcType="DECIMAL" property="bidMoney" />
+        <result column="bid_time" jdbcType="TIMESTAMP" property="bidTime" />
+        <result column="bid_status" jdbcType="INTEGER" property="bidStatus" />
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey">
+        delete from b_bid_info where id = #{id}
+    </delete>
+
+    <insert id="insert">
+    </insert>
+
+    <insert id="insertSelective">
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select * from b_bid_info where id = #{id}
+    </select>
+
+    <update id="updateByPrimaryKeySelective">
+    </update>
+
+    <update id="updateByPrimaryKey">
+    </update>
+
+    <select id="findCountBidMoney" resultType="java.math.BigDecimal">
+        SELECT sum(bid_money) from b_bid_info
+    </select>
+</mapper>
