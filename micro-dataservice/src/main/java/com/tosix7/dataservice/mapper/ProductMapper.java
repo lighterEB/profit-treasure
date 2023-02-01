@@ -2,7 +2,7 @@ package com.tosix7.dataservice.mapper;
 
 import com.tosix7.info.ProductInfo;
 
-public interface ProductInfoMapper {
+public interface ProductMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(ProductInfo record);
