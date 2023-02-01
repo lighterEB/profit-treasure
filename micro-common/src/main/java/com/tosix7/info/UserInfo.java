@@ -2,6 +2,10 @@ package com.tosix7.info;
 
 import java.util.Date;
 
+/**
+ * 用户信息
+ */
+
 public class UserInfo {
     /**
      * 用户ID
