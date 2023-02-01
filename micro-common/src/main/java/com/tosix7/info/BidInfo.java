@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 投标信息表
  */
-public class bidInfo {
+public class BidInfo {
     /**
      * 投标记录ID
      */
@@ -85,7 +85,7 @@ public class bidInfo {
         this.bidStatus = bidStatus;
     }
 
-    public bidInfo(Integer id, Integer prodId, Integer uid, BigDecimal bidMoney, Date bidTime, Integer bidStatus) {
+    public BidInfo(Integer id, Integer prodId, Integer uid, BigDecimal bidMoney, Date bidTime, Integer bidStatus) {
         this.id = id;
         this.prodId = prodId;
         this.uid = uid;
@@ -94,7 +94,7 @@ public class bidInfo {
         this.bidStatus = bidStatus;
     }
 
-    public bidInfo() {
+    public BidInfo() {
     }
 
     @Override
