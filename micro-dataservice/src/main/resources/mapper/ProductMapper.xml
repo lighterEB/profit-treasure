@@ -24,4 +24,8 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         select * from b_product_info where id=#{id}
     </select>
+
+    <select id="findAvgRate" resultType="java.math.BigDecimal">
+        SELECT AVG(rate) FROM b_product_info
+    </select>
 </mapper>

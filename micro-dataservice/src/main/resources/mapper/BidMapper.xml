@@ -32,4 +32,8 @@
 
     <update id="updateByPrimaryKey">
     </update>
+
+    <select id="findCountBidMoney" resultType="java.math.BigDecimal">
+        SELECT sum(bid_money) from b_bid_info
+    </select>
 </mapper>

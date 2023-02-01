@@ -6,8 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableDubbo
 @MapperScan("com.tosix7.dataservice.mapper")
+@EnableDubbo
 public class DataServiceApplication {
 
     public static void main(String[] args) {
