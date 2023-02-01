@@ -2,7 +2,7 @@ package com.tosix7.dataservice.mapper;
 
 import com.tosix7.info.BidInfo;
 
-public interface BidInfoMapper {
+public interface BidMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(BidInfo record);
