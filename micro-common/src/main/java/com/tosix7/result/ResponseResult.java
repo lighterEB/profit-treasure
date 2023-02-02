@@ -18,9 +18,9 @@ public class ResponseResult<T> {
     /**
      * 返回的数据
      */
-    private Object data;
+    private T data;
 
-    public ResponseResult(ResponseResultEnum responseResultEnum, Object data) {
+    public ResponseResult(ResponseResultEnum responseResultEnum, T data) {
         this.code = responseResultEnum.getStatusCode();
         this.message = responseResultEnum.getMessage();
         this.data = data;
@@ -55,7 +55,7 @@ public class ResponseResult<T> {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

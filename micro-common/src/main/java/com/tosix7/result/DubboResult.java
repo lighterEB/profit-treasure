@@ -3,6 +3,8 @@ package com.tosix7.result;
 import com.tosix7.enumerate.DubboResultEnum;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashMap;
 
 /**
  * 统一duboo接口调用服务类
@@ -21,9 +23,9 @@ public class DubboResult<T> implements Serializable {
     /**
      * 返回的数据
      */
-    private Object data;
+    private T data;
 
-    public DubboResult(DubboResultEnum dubboResultEnum, Object data) {
+    public DubboResult(DubboResultEnum dubboResultEnum, T data) {
         this.code = dubboResultEnum.getStatusCode();
         this.message = dubboResultEnum.getMessage();
         this.data = data;
@@ -61,7 +63,7 @@ public class DubboResult<T> implements Serializable {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
@@ -73,7 +75,7 @@ public class DubboResult<T> implements Serializable {
         return new DubboResult<T>(DubboResultEnum.DUBBO_SUCCESS, data);
     }
 
-    public static DubboResult<Void> failure(){
-        return new DubboResult<Void>(DubboResultEnum.DUBBO_FAILED, null);
+    public static DubboResult<HashMap<String, BigDecimal>> failure(){
+        return new DubboResult<HashMap<String, BigDecimal>>(DubboResultEnum.DUBBO_FAILED, null);
     }
 }

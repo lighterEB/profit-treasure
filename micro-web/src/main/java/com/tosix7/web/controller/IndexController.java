@@ -22,9 +22,12 @@ public class IndexController {
      * @return
      */
     @GetMapping("/hot")
-    public String findHot(){
-        ResponseResult<HashMap> result;
+    public ResponseResult<?> findHot(){
         DubboResult<HashMap<String, BigDecimal>> hotData = indexService.getHotData();
-        return hotData.toString();
+        if (hotData.getData() != null){
+            return ResponseResult.success(hotData.getData());
+        }else {
+            return ResponseResult.failure();
+        }
     }
 }

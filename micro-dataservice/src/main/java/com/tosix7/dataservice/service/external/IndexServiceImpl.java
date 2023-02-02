@@ -31,17 +31,25 @@ public class IndexServiceImpl implements IndexService {
      * 用户总数
      * 历史年化收益率
      * 总投资金额
+     *
      * @return
      */
 
     @Override
     public DubboResult<HashMap<String, BigDecimal>> getHotData() {
         HashMap<String, BigDecimal> data = new HashMap<>();
-        DubboResult<HashMap<String, BigDecimal>> result = new DubboResult<>();
-        BigDecimal countUser = BigDecimal.valueOf(userMapper.getCountUser());
-        BigDecimal avgRate = productMapper.findAvgRate();
-        BigDecimal countBidMoney = bidMapper.findCountBidMoney();
-        return result;
+        BigDecimal hotCountUser = BigDecimal.valueOf(userMapper.getCountUser());
+        BigDecimal hotRate = productMapper.findAvgRate();
+        BigDecimal hotCountBidMoney = bidMapper.findCountBidMoney();
+        if (hotRate == null || hotCountBidMoney == null){
+            return DubboResult.failure();
+        }else{
+            data.put(ResponseKey.HOT_RATE, hotRate);
+            data.put(ResponseKey.HOT_COUNT_USER, hotCountUser);
+            data.put(ResponseKey.HOT_COUNT_BID_MONEY, hotCountBidMoney);
+            return DubboResult.success(data);
+        }
+
     }
 
     @Override
