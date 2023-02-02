@@ -1,6 +1,7 @@
-package com.tosix7.result.impl;
+package com.tosix7.result;
 
-import com.tosix7.result.ResultStatus;
+import com.tosix7.enumerate.DubboResultEnum;
+import com.tosix7.result.impl.ResultStatusImpl;
 
 import java.io.Serializable;
 
@@ -23,9 +24,9 @@ public class DubboResult<T> implements Serializable {
      */
     private Object data;
 
-    public DubboResult(ResultStatusImpl resultStatus, Object data) {
-        this.code = resultStatus.errorCode();
-        this.message = resultStatus.errorMsg();
+    public DubboResult(DubboResultEnum dubboResultEnum, Object data) {
+        this.code = dubboResultEnum.getStatusCode();
+        this.message = dubboResultEnum.getMessage();
         this.data = data;
     }
 
@@ -68,10 +69,14 @@ public class DubboResult<T> implements Serializable {
     }
 
     public static DubboResult<Void> success(){
-        return new DubboResult<Void>(ResultStatusImpl.SUCCESS, null);
+        return new DubboResult<Void>(DubboResultEnum.DUBBO_SUCCESS, null);
     }
 
     public static <T> DubboResult<T> success(T data){
-        return new DubboResult<T>(ResultStatusImpl.SUCCESS, data);
+        return new DubboResult<T>(DubboResultEnum.DUBBO_SUCCESS, data);
+    }
+
+    public static DubboResult<Void> failure(){
+        return new DubboResult<Void>(DubboResultEnum.DUBBO_FAILED, null);
     }
 }

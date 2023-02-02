@@ -1,6 +1,6 @@
-package com.tosix7.result.impl;
+package com.tosix7.result;
 
-import com.tosix7.result.ResultStatus;
+import com.tosix7.enumerate.ResponseResultEnum;
 
 /**
  * Web响应给Vue页面结果
@@ -20,9 +20,9 @@ public class ResponseResult<T> {
      */
     private Object data;
 
-    public ResponseResult(ResultStatusImpl resultStatus, Object data) {
-        this.code = resultStatus.errorCode();
-        this.message = resultStatus.errorMsg();
+    public ResponseResult(ResponseResultEnum responseResultEnum, Object data) {
+        this.code = responseResultEnum.getStatusCode();
+        this.message = responseResultEnum.getMessage();
         this.data = data;
     }
 
@@ -59,16 +59,31 @@ public class ResponseResult<T> {
         this.data = data;
     }
 
+
+    /**
+     * 响应成功结果-无数据
+     * @return
+     */
     public static ResponseResult<Void> success(){
-        return new ResponseResult<Void>(ResultStatusImpl.SUCCESS, null);
+        return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_SUCCESS, null);
     }
+
+    /**
+     * 响应成功结果-有数据
+     * @param data 数据对象
+     * @return
+     * @param <T>
+     */
 
     public static <T> ResponseResult<T> success(T data){
-        return new ResponseResult<T>(ResultStatusImpl.SUCCESS, data);
+        return new ResponseResult<T>(ResponseResultEnum.RESPONSE_SUCCESS, data);
     }
 
-    public ResponseResult() {
-        this.code = ResultStatus.RESPONSE_SUCCESS_CODE;
-        this.message = ResultStatus.RESPONSE_SUCCESS_MSG;
+    /**
+     * 响应失败结果
+     * @return
+     */
+    public static ResponseResult<Void> failure(){
+        return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_FAILED, null);
     }
 }

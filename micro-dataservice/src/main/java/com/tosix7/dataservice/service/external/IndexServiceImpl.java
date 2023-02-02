@@ -1,14 +1,13 @@
 package com.tosix7.dataservice.service.external;
 
-import com.tosix7.constant.ConstantKey;
+import com.tosix7.constant.ResponseKey;
 import com.tosix7.dataservice.mapper.BidMapper;
 import com.tosix7.dataservice.mapper.ProductMapper;
 import com.tosix7.dataservice.mapper.UserMapper;
 import com.tosix7.info.ProductInfo;
-import com.tosix7.result.impl.DubboResult;
+import com.tosix7.result.DubboResult;
 import com.tosix7.api.service.IndexService;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
@@ -16,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @DubboService
-@Mapper
 public class IndexServiceImpl implements IndexService {
 
     @Autowired
@@ -43,10 +41,6 @@ public class IndexServiceImpl implements IndexService {
         BigDecimal countUser = BigDecimal.valueOf(userMapper.getCountUser());
         BigDecimal avgRate = productMapper.findAvgRate();
         BigDecimal countBidMoney = bidMapper.findCountBidMoney();
-        data.put(ConstantKey.HOT_RATE_KEY, avgRate);
-        data.put(ConstantKey.HOT_COUNT_USER_KEY, countUser);
-        data.put(ConstantKey.HOT_COUNT_BID_MONEY_KEY, countBidMoney);
-        result.setData(data);
         return result;
     }
 

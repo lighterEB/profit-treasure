@@ -1,7 +1,7 @@
 package com.tosix7.api.service;
 
 import com.tosix7.info.ProductInfo;
-import com.tosix7.result.impl.DubboResult;
+import com.tosix7.result.DubboResult;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
