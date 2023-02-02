@@ -1,7 +1,6 @@
 package com.tosix7.result;
 
 import com.tosix7.enumerate.DubboResultEnum;
-import com.tosix7.result.impl.ResultStatusImpl;
 
 import java.io.Serializable;
 
@@ -31,8 +30,6 @@ public class DubboResult<T> implements Serializable {
     }
 
     public DubboResult() {
-        this.code = ResultStatus.RESPONSE_SUCCESS_CODE;
-        this.message = ResultStatus.DUBBO_SUCCESS_MSG;
     }
 
     @Override
