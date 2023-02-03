@@ -10,11 +10,15 @@ module.exports = {
     port: 8082,
     //配置跨域
     proxy: {
-      '/': {
-        target: "http://127.0.0.1:8080/",
+      '/hot': {
+        target: "http://127.0.0.1:8083/hot",
         changeOrigin:true,
         secure:true,
+        pathRewrite: {
+          '^/hot': ''
+        }
       }
     }
-  }
+  },
+  lintOnSave: false
 }

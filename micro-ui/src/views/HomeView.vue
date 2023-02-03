@@ -20,11 +20,11 @@
       <div class="banner-abs">
         <div class="banner-abs-box">
           <div class="banner-abs-title">动力金融网历史年化收益率</div>
-          <b>{{ indexData.avgRate }}<i>%</i></b>
+          <b>{{ indexData.hotRate }}<i>%</i></b>
           <p>平台用户数</p>
-          <span>{{ indexData.registerUser }}<i>位</i></span>
+          <span>{{ indexData.hotCountUser }}<i>位</i></span>
           <p class="banner-abs-border">累计成交金额</p>
-          <span>{{ indexData.sumMoney }}<i>元</i></span>
+          <span>{{ indexData.hotCountBidMoney }}<i>元</i></span>
         </div>
       </div>
     </div>
@@ -319,18 +319,15 @@ export default {
   },
   data() {
     return {
-      indexData: {
-        hotCountUser: 0,
-        hotRate: 0,
-        hotCountBidMoney: 0,
-      },
-      indexDataObject
+      indexData: indexDataObject
     };
   },
   mounted() {
-    axios.get("http://127.0.0.1:8080/hot").then((res) => {
-      this.indexData = res.data;
-      console.log(res.data);
+    axios.get("/hot").then((res) => {
+      this.indexData.hotCountUser = res.data.data.hotCountUser;
+      this.indexData.hotRate = res.data.data.hotRate;
+      this.indexData.hotCountBidMoney = res.data.data.hotCountBidMoney;
+      //console.log(this.indexData.hotCountBidMoney)
     });
   },
 };
