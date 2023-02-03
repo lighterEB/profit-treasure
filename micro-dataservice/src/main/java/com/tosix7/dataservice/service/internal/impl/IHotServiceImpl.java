@@ -19,13 +19,13 @@ import java.util.HashMap;
 public class IHotServiceImpl implements IHotService {
 
     @Autowired
-    BidMapper bidMapper;
+    private BidMapper bidMapper;
 
     @Autowired
-    ProductMapper productMapper;
+    private ProductMapper productMapper;
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     /**
      * 查询首页热点数据 --

@@ -18,6 +18,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="micro-common" options="-parameters" />
       <module name="micro-dataservice" options="-parameters" />
       <module name="micro-parent" options="-parameters" />
       <module name="micro-web" options="-parameters" />

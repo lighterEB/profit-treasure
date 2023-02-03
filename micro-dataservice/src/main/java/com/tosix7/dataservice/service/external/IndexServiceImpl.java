@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @DubboService
+@SuppressWarnings("all")
 public class IndexServiceImpl implements IndexService {
 
     @Autowired

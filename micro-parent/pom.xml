@@ -32,6 +32,8 @@
         <fastjson.version>1.2.51</fastjson.version>
         <client.version>4.5.12</client.version>
         <dubbo.version>2.7.8</dubbo.version>
+        <swagger.version>2.9.2</swagger.version>
+        <pagehelper.version>1.4.6</pagehelper.version>
     </properties>
 
     <!--指定依赖管理-->
@@ -65,6 +67,24 @@
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo.version}</version>
+            </dependency>
+
+            <!--swagger2-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
 
             <!--zookeeper依赖-->
