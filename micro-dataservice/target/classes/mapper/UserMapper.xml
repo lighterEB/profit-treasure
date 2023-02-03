@@ -18,8 +18,4 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         select * from u_user where id=#{id}
     </select>
-
-    <select id="getCountUser" resultType="java.lang.Integer">
-        SELECT count(*) FROM u_user
-    </select>
 </mapper>

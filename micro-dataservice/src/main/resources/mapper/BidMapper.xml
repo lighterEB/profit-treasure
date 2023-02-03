@@ -23,17 +23,10 @@
     <insert id="insertSelective">
     </insert>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
-        select * from b_bid_info where id = #{id}
-    </select>
-
     <update id="updateByPrimaryKeySelective">
     </update>
 
     <update id="updateByPrimaryKey">
     </update>
 
-    <select id="findCountBidMoney" resultType="java.math.BigDecimal">
-        SELECT sum(bid_money) from b_bid_info
-    </select>
 </mapper>

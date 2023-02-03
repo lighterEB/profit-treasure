@@ -1,6 +1,7 @@
 package com.tosix7.dataservice.mapper;
 
 import com.tosix7.info.ProductInfo;
+import org.apache.ibatis.annotations.Select;
 
 import java.math.BigDecimal;
 
@@ -21,5 +22,6 @@ public interface ProductMapper {
      * 获取年化收益率
      * @return
      */
+    @Select("SELECT AVG(rate) FROM b_product_info")
     BigDecimal findAvgRate();
 }
