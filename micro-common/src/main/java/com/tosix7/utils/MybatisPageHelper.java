@@ -28,7 +28,7 @@ public class MybatisPageHelper {
         int pageSize = pageParam.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
 
-        Object result = ReflectionUtils.invokeMethod(mapper, queryMethodName, args);
+        Object result = ReflectionUtils.invoke(mapper, queryMethodName, args);
         return getPageResult(pageParam, new PageInfo((List) result));
     }
 
