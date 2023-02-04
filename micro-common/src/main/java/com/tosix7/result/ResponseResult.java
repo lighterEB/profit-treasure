@@ -2,10 +2,12 @@ package com.tosix7.result;
 
 import com.tosix7.enumerate.ResponseResultEnum;
 
+import java.io.Serializable;
+
 /**
  * Web响应给Vue页面结果
  */
-public class ResponseResult<T> {
+public class ResponseResult<T> implements Serializable {
 
     /**
      * 返回状态码

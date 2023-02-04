@@ -1,12 +1,13 @@
 package com.tosix7.info;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 投标信息表
  */
-public class BidInfo {
+public class BidInfo implements Serializable {
     /**
      * 投标记录ID
      */

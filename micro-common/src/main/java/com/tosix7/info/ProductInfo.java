@@ -1,12 +1,13 @@
 package com.tosix7.info;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 产品信息表
  */
-public class ProductInfo {
+public class ProductInfo implements Serializable {
     private Integer id;
 
     /**

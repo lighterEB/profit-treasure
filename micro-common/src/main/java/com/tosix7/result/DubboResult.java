@@ -75,7 +75,7 @@ public class DubboResult<T> implements Serializable {
         return new DubboResult<T>(DubboResultEnum.DUBBO_SUCCESS, data);
     }
 
-    public static DubboResult<HashMap<String, BigDecimal>> failure(){
-        return new DubboResult<HashMap<String, BigDecimal>>(DubboResultEnum.DUBBO_FAILED, null);
+    public static <T> DubboResult<T> failure(){
+        return new DubboResult<T>(DubboResultEnum.DUBBO_FAILED, null);
     }
 }

@@ -1,12 +1,13 @@
 package com.tosix7.info;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 用户投标收益记录
  */
-public class IncomeRecordInfo {
+public class IncomeRecordInfo implements Serializable {
 
     private Integer id;
 

@@ -41,6 +41,14 @@ public class ReflectionUtils {
         return result;
     }
 
+    /**
+     * 根据方法名和参数对象查找方法
+     * @param clazz 加载类
+     * @param name 方法名
+     * @param args 参数对象
+     * @return 返回查找到的方法
+     */
+
     private static Method getMethod(Class<?> clazz, String name, Object[] args) {
         Method queryMethod = null;
         Method[] methods = clazz.getMethods();

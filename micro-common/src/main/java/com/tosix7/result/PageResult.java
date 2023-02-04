@@ -1,11 +1,12 @@
 package com.tosix7.result;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 分页返回数据
  */
-public class PageResult {
+public class PageResult implements Serializable {
     /**
      * 当前页码
      */

@@ -1,11 +1,12 @@
 package com.tosix7.info;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * 用户可用资金表
  */
-public class FinanceAccountInfo {
+public class FinanceAccountInfo implements Serializable {
 
     private Integer id;
 

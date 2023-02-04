@@ -1,6 +1,6 @@
 package com.tosix7.dataservice.service.external;
 
-import com.tosix7.dataservice.service.internal.impl.IHotServiceImpl;
+import com.tosix7.dataservice.service.internal.IHotService;
 import com.tosix7.info.ProductInfo;
 import com.tosix7.result.DubboResult;
 import com.tosix7.api.service.IndexService;
@@ -15,7 +15,7 @@ import java.util.List;
 public class IndexServiceImpl implements IndexService {
 
     @Autowired
-    IHotServiceImpl hotService;
+    IHotService hotService;
 
     @Override
     public DubboResult<HashMap<String, BigDecimal>> getHotData() {

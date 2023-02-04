@@ -10,5 +10,4 @@ public final class DubboKey {
     public static final Integer DUBBO_FAILED_CODE=-1;
     public static final String DUBBO_FAILED_MSG="执行失败";
 
-
 }

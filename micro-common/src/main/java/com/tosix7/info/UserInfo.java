@@ -1,12 +1,13 @@
 package com.tosix7.info;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用户信息
  */
 
-public class UserInfo {
+public class UserInfo implements Serializable {
     /**
      * 用户ID
      */

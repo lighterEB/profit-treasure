@@ -1,12 +1,13 @@
 package com.tosix7.info;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 用户充值记录信息表
  */
-public class RechargeRecordInfo {
+public class RechargeRecordInfo implements Serializable {
 
     private Integer id;
 

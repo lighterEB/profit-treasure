@@ -4,6 +4,7 @@ import com.tosix7.info.ProductInfo;
 import org.apache.ibatis.annotations.Select;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface ProductMapper {
 //    int deleteByPrimaryKey(Integer id);
@@ -24,4 +25,6 @@ public interface ProductMapper {
      */
     @Select("SELECT AVG(rate) FROM b_product_info")
     BigDecimal findAvgRate();
+
+    List<ProductInfo> findProductByType(Integer productType);
 }
