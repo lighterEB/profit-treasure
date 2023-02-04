@@ -83,7 +83,7 @@ public class ResponseResult<T> {
      * 响应失败结果
      * @return
      */
-    public static ResponseResult<Void> failure(){
-        return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_FAILED, null);
+    public static ResponseResult<String> failure(){
+        return new ResponseResult<String>(ResponseResultEnum.RESPONSE_FAILED, "");
     }
 }

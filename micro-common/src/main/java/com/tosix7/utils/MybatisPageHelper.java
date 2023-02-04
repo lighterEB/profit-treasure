@@ -4,9 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tosix7.param.PageParam;
 import com.tosix7.result.PageResult;
-import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -27,9 +25,9 @@ public class MybatisPageHelper {
         int pageNum = pageParam.getPageNum();
         int pageSize = pageParam.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
-
         Object result = ReflectionUtils.invoke(mapper, queryMethodName, args);
         return getPageResult(pageParam, new PageInfo((List) result));
+
     }
 
     private static PageResult getPageResult(PageParam pageParam, PageInfo<?> pageInfo) {
