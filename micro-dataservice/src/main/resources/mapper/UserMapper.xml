@@ -18,4 +18,8 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         select * from u_user where id=#{id}
     </select>
+
+    <select id="selectByPhoneNumber" resultMap="BaseResultMap">
+        select * from u_user where phone=#{phoneNum}
+    </select>
 </mapper>

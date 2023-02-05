@@ -37,4 +37,14 @@ public class ResponseKey {
      */
     public static final String HOT_COUNT_USER = "hotCountUser";
 
+    /**
+     * 用户不存在
+     */
+    public static final String USER_NOT_FOUND = "用户不存在";
+
+    /**
+     * 用户不存在状态码
+     */
+    public static final Integer USER_NOT_FOUND_CODE = -1;
+
 }

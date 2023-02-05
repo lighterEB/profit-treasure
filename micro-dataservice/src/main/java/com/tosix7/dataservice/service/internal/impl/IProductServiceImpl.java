@@ -22,6 +22,7 @@ public class IProductServiceImpl implements IProductService {
 
     @Autowired
     ProductMapper productMapper;
+
     @Override
     public int save(ProductInfo record) {
         return 0;

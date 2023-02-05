@@ -15,6 +15,8 @@ public interface UserMapper {
     @Select("SELECT count(*) FROM u_user")
     Integer getCountUser();
 
+    UserInfo selectByPhoneNumber(String phoneNum);
+
 
 //    int updateByPrimaryKeySelective(UserInfo record);
 //
