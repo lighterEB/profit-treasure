@@ -47,4 +47,9 @@ public class ResponseKey {
      */
     public static final Integer USER_NOT_FOUND_CODE = -1;
 
+    /**
+     * 验证码
+     */
+    public static final String KAPTCHA_SESSION_KEY = "kaptcha";
+
 }
