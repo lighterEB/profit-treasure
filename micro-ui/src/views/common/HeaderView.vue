@@ -26,7 +26,7 @@
         </div>
         <div class="public-head-right">
           <router-link to="/tologin">登录</router-link>
-          <v-link href="javascript:;" target="_blank">注册</v-link>
+          <router-link to="/toregist">注册</router-link>
         </div>
       </div>
     </div>
