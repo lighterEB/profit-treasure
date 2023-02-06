@@ -224,7 +224,9 @@ body {
     color: #56390E;
     line-height: 27px;
     padding: 0 13px;
+    /* autoprefixer: off */
     background: -webkit-linear-gradient(left,#A58149, #CEAF7F);
+    /* autoprefixer: on */
     background: -o-linear-gradient(left,#A58149, #CEAF7F);
     background: -moz-linear-gradient(left,#A58149, #CEAF7F);
     background: linear-gradient(left,#A58149, #CEAF7F);
@@ -397,7 +399,9 @@ body {
     border-top-right-radius: 25px;
     padding: 0 10px;
     color: #56390E;
+    /* autoprefixer: off */
     background: -webkit-linear-gradient(left,#AA8650, #CEAF80);
+    /* autoprefixer: on */
     background: -o-linear-gradient(left,#AA8650, #CEAF80);
     background: -moz-linear-gradient(left,#AA8650, #CEAF80);
     background: linear-gradient(left,#AA8650, #CEAF80);

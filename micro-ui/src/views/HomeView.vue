@@ -57,12 +57,12 @@
     <!--产品-->
     <div class="content" v-for="prod in indexData.xinList" :key="prod.id">
       <h2 class="public-title">
-        <span>{{ prod.name }}</span>
+        <span>{{ prod.productName }}</span>
       </h2>
       <div class="new-user">
         <div class="new-user-sm">
-          <span>{{ prod.minMoney }}元起投</span>
-          <span>投资最高限额{{ prod.maxMoney }}元</span>
+          <span>{{ prod.bidMinLimit }}元起投</span>
+          <span>投资最高限额{{ prod.bidMaxLimit }}元</span>
           <span>当日即系</span>
         </div>
         <div class="new-user-number">
@@ -83,7 +83,7 @@
             </li>
             <li>
               <p>
-                <b>{{ prod.leftMoney }}</b
+                <b>{{ prod.leftProductMoney }}</b
                 >元
               </p>
               <span>利余可投资金额</span>
@@ -111,23 +111,32 @@
         >
       </h2>
       <ul class="preferred-select clearfix">
-        <li>
+        <li v-for="prod in indexData.youList" :key="prod.id">
           <h3 class="preferred-select-title">
-            <span>满月宝</span>
+            <span>{{ prod.productName }}</span>
             <img src="../assets/image/1-bg1.jpg" alt="" />
           </h3>
           <div class="preferred-select-number">
-            <p><b>4.9</b>%</p>
+            <p>
+              <b>{{ prod.rate }}</b
+              >%
+            </p>
             <span>历史年化收益率</span>
           </div>
           <div class="preferred-select-date">
             <div>
               <span>投资周期</span>
-              <p><b>1</b>个月</p>
+              <p>
+                <b>{{ prod.cycle }}</b
+                >个月
+              </p>
             </div>
             <div>
               <span>余利可投资金额</span>
-              <p><b>250000.0</b>元</p>
+              <p>
+                <b>{{ prod.leftProductMoney }}</b
+                >元
+              </p>
             </div>
           </div>
           <p class="preferred-select-txt">
@@ -146,23 +155,32 @@
         >
       </h2>
       <ul class="preferred-select clearfix">
-        <li>
+        <li v-for="prod in indexData.sanList" :key="prod.id">
           <h3 class="preferred-select-title1">
-            个人信用消费借款
+            {{ prod.name }}
             <span>散标</span>
           </h3>
           <div class="preferred-select-number">
-            <p><b>4.9</b>%</p>
+            <p>
+              <b>{{ prod.rate }}</b
+              >%
+            </p>
             <span>历史年化收益率</span>
           </div>
           <div class="preferred-select-date">
             <div>
               <span>投资周期</span>
-              <p><b>1</b>个月</p>
+              <p>
+                <b>{{ prod.cycle }}</b
+                >个月
+              </p>
             </div>
             <div>
               <span>余利可投资金额</span>
-              <p><b>250000.0</b>元</p>
+              <p>
+                <b>{{ prod.leftProductMoney }}</b
+                >元
+              </p>
             </div>
           </div>
           <p class="preferred-select-txt">
@@ -210,7 +228,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import {myajax} from "@/utils/myaxios";
 import HeaderView from "@/views/common/HeaderView";
 import FooterView from "@/views/common/FooterView";
 
@@ -219,67 +237,121 @@ let indexDataObject = {
   hotRate: 0,
   hotCountBidMoney: 0,
   xinList: [
-    {
-      id: 0,
-      name: "",
-      rate: "",
-      cycle: -1,
-      leftMoney: 0,
-      status: -1,
-      type: -1,
-      minMoney: 0,
-      maxMoney: 0,
-    },
+  {
+      id: null,
+      productName: "",
+      rate: 0,
+      cycle: null,
+      releaseTime: "",
+      productType: null,
+      productNo: "",
+      productMoney: 0,
+      leftProductMoney: 0,
+      bidMinLimit: 0,
+      bidMaxLimit: 0,
+      productStatus: 0,
+      productFullTime: 0,
+      productDesc: ""
+    }
   ],
   sanList: [
     {
-      id: 0,
-      name: "",
-      rate: "",
-      cycle: -1,
-      leftMoney: 0,
-      status: -1,
-      type: -1,
-      minMoney: 0,
-      maxMoney: 0,
-    },
+      id: null,
+      productName: "",
+      rate: 0,
+      cycle: null,
+      releaseTime: "",
+      productType: null,
+      productNo: "",
+      productMoney: 0,
+      leftProductMoney: 0,
+      bidMinLimit: 0,
+      bidMaxLimit: 0,
+      productStatus: 0,
+      productFullTime: 0,
+      productDesc: ""
+    }
   ],
   youList: [
-    {
-      id: 0,
-      name: "",
-      rate: "",
-      cycle: -1,
-      leftMoney: 0,
-      status: -1,
-      type: -1,
-      minMoney: 0,
-      maxMoney: 0,
-    },
+  {
+      id: null,
+      productName: "",
+      rate: 0,
+      cycle: null,
+      releaseTime: "",
+      productType: null,
+      productNo: "",
+      productMoney: 0,
+      leftProductMoney: 0,
+      bidMinLimit: 0,
+      bidMaxLimit: 0,
+      productStatus: 0,
+      productFullTime: 0,
+      productDesc: ""
+    }
   ],
 };
 
 export default {
   name: "HomeView",
   components: {
-    HeaderView: HeaderView,
-    FooterView: FooterView,
+    HeaderView,
+    FooterView,
   },
   data() {
     return {
-      indexData: indexDataObject
+      indexData: indexDataObject,
     };
   },
-  mounted() {
-    let api =  `/hot`
-    axios.get("/myApi" + api).then((res) => {
-      this.indexData.hotCountUser = res.data.data.hotCountUser;
-      this.indexData.hotRate = res.data.data.hotRate;
-      this.indexData.hotCountBidMoney = res.data.data.hotCountBidMoney;
-      //console.log(this.indexData.hotCountBidMoney)
-    });
+  methods: {
+    Product: function(prodType){
+      var pageSize = 3
+      if(prodType === 0){
+        pageSize = 1
+
+      }
+      myajax({
+      url: "/findProduct",
+      method: "GET",
+      params:{
+        pageNum: '1',
+        pageSize: pageSize,
+        prodType: prodType
+      }
+    }).then((res) => {
+      if(res.data.code == 200) {
+        if(prodType===0){
+          this.indexData.xinList = res.data.data.content
+        }else if(prodType===1){
+          this.indexData.youList = res.data.data.content
+        }else{
+          this.indexData.sanList = res.data.data.content
+        }
+        
+      }else{
+        alert(res.data.message)
+      }
+    })
+    }
   },
-};
+  mounted() {
+    myajax({
+      url: "/hot",
+      method: "GET",
+    }).then((res) => {
+      if (res.data.code == 200) {
+        this.indexData.hotCountUser = res.data.data.hotCountUser;
+        this.indexData.hotRate = res.data.data.hotRate;
+        this.indexData.hotCountBidMoney = res.data.data.hotCountBidMoney;
+      }else{
+        alert(res.data.message)
+      }
+    })
+    this.Product(0)
+    this.Product(1)
+    this.Product(2)
+  }
+}
 </script>
 
 <style>
