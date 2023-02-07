@@ -11,6 +11,11 @@ const routes = [
     path: '/toregist',
     name: 'toregist',
     component: () => import('../views/RegistView.vue')
+  },
+  {
+    path: '/tologin',
+    name: 'tologin',
+    component: () => import('../views/LoginView.vue')
   }
 ]
 

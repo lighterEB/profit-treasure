@@ -16,6 +16,7 @@ public class LoginController {
     RequestService requestService;
     @RequestMapping("/login")
     public ResponseResult<?> login(@RequestBody UserDetails userDetails){
+        System.out.printf(userDetails.toString());
         return requestService.requestLogin(userDetails);
     }
 }

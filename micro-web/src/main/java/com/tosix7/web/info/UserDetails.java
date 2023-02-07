@@ -10,7 +10,7 @@ public class UserDetails implements Serializable {
     /**
      * 用户手机号码
      */
-    private String poneNum;
+    private String phoneNum;
 
     /**
      * 用户密码
@@ -20,17 +20,17 @@ public class UserDetails implements Serializable {
     @Override
     public String toString() {
         return "UserDetails{" +
-                "poneNum='" + poneNum + '\'' +
+                "phoneNum='" + phoneNum + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
 
-    public String getPoneNum() {
-        return poneNum;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setPoneNum(String poneNum) {
-        this.poneNum = poneNum;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
     public String getPassword() {
@@ -44,8 +44,8 @@ public class UserDetails implements Serializable {
     public UserDetails() {
     }
 
-    public UserDetails(String poneNum, String password) {
-        this.poneNum = poneNum;
+    public UserDetails(String phoneNum, String password) {
+        this.phoneNum = phoneNum;
         this.password = password;
     }
 }

@@ -37,6 +37,9 @@ public class ResponseResult<T> implements Serializable {
                 '}';
     }
 
+    public ResponseResult() {
+    }
+
     public Integer getCode() {
         return code;
     }
@@ -92,8 +95,8 @@ public class ResponseResult<T> implements Serializable {
     /**
      * 登录成功响应
      */
-    public static<Void> ResponseResult<Void> loginSuccess() {
-        return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_LOGIN_SUCCESS, null);
+    public static<UserInfo> ResponseResult<UserInfo> loginSuccess(UserInfo userInfo) {
+        return new ResponseResult<>(ResponseResultEnum.RESPONSE_LOGIN_SUCCESS, userInfo);
     }
 
     /**

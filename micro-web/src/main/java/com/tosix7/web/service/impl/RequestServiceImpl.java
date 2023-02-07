@@ -62,9 +62,9 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public ResponseResult<?> requestLogin(UserDetails userDetails) {
-        DubboResult<UserInfo> dubboResult = userService.getUserByPhone(userDetails.getPoneNum());
+        DubboResult<UserInfo> dubboResult = userService.getUserByPhone(userDetails.getPhoneNum());
         if (dubboResult.getData() != null){
-            return ResponseResult.loginSuccess();
+            return ResponseResult.loginSuccess(dubboResult.getData());
         }else{
             return ResponseResult.userNotFound();
         }
