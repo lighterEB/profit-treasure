@@ -67,7 +67,7 @@ public class ResponseResult<T> implements Serializable {
      * @return
      */
     public static ResponseResult<Void> success(){
-        return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_SUCCESS, null);
+        return new ResponseResult<>(ResponseResultEnum.RESPONSE_SUCCESS, null);
     }
 
     /**
@@ -78,7 +78,7 @@ public class ResponseResult<T> implements Serializable {
      */
 
     public static <T> ResponseResult<T> success(T data){
-        return new ResponseResult<T>(ResponseResultEnum.RESPONSE_SUCCESS, data);
+        return new ResponseResult<>(ResponseResultEnum.RESPONSE_SUCCESS, data);
     }
 
     /**
@@ -86,6 +86,27 @@ public class ResponseResult<T> implements Serializable {
      * @return
      */
     public static ResponseResult<String> failure(){
-        return new ResponseResult<String>(ResponseResultEnum.RESPONSE_FAILED, "");
+        return new ResponseResult<>(ResponseResultEnum.RESPONSE_FAILED, "");
+    }
+
+    /**
+     * 登录成功响应
+     */
+    public static<Void> ResponseResult<Void> loginSuccess() {
+        return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_LOGIN_SUCCESS, null);
+    }
+
+    /**
+     * 登录失败响应
+     */
+    public static<Void> ResponseResult<Void> loginFailed() {
+        return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_LOGIN_FAILED, null);
+    }
+
+    /**
+     * 用户不存在响应
+     */
+    public static<Void> ResponseResult<Void> userNotFound() {
+        return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_USER_NOT_FOUND, null);
     }
 }

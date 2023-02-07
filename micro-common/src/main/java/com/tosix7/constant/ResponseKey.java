@@ -45,7 +45,27 @@ public class ResponseKey {
     /**
      * 用户不存在状态码
      */
-    public static final Integer USER_NOT_FOUND_CODE = -1;
+    public static final Integer USER_NOT_FOUND_CODE = 2001;
+
+    /**
+     * 登录成功
+     */
+    public static final String LOGIN_SUCCESS="登录成功";
+
+    /**
+     * 登录成功状态码
+     */
+    public static final Integer LOGIN_SUCCESS_CODE= 1000;
+
+    /**
+     * 登录失败
+     */
+    public static final String LOGIN_FAILED="登录失败";
+
+    /**
+     * 登录失败状态码
+     */
+    public static final Integer LOGIN_FAILED_CODE= 2000;
 
     /**
      * 验证码
