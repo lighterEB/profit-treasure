@@ -67,9 +67,21 @@ public class DubboResult<T> implements Serializable {
         this.data = data;
     }
 
+
+    /**
+     * 回调成功静态方法无数据
+     * @return
+     */
+
     public static DubboResult<Void> success(){
         return new DubboResult<Void>(DubboResultEnum.DUBBO_SUCCESS, null);
     }
+
+
+    /**
+     * 回调成功静态方法有数据
+     * @return
+     */
 
     public static <T> DubboResult<T> success(T data){
         return new DubboResult<T>(DubboResultEnum.DUBBO_SUCCESS, data);

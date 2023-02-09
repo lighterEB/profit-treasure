@@ -18,7 +18,7 @@
               </div>
             </li>
             <li>
-              <router-link to="/center">借款人信息</router-link>
+              <router-link to="/usercenter">借款人信息</router-link>
             </li>
             <li><a href="javascript:;" target="_blank">信息披露</a></li>
             <li><a href="javascript:;" target="_blank">安全计划</a></li>

@@ -472,7 +472,9 @@ body {
     color: #6C6B6C;
 }
 .preferred-select li .preferred-select-txt{
+    /* autoprefixer:off */
     -webkit-box-sizing: border-box;
+    /* autoprefixer:on */
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 330px;

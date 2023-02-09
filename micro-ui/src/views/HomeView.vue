@@ -93,7 +93,7 @@
             href="javascript:;"
             target="_blank"
             class="new-user-btn"
-            @click="goLink('/product/detail'), { productId: prod.id }"
+            @click="goLink('/details'), { productId: prod.id }"
             >立即投资</a
           >
         </div>
@@ -186,8 +186,8 @@
           <p class="preferred-select-txt">
             优选计划项目，投资回报周期1个月，起点低，适合短期资金周转、对流动性要求高的投资人。
           </p>
-          <a href="javascript:;" target="_blank" class="preferred-select-btn"
-            >立即投资</a
+          <router-link to="/details" class="preferred-select-btn"
+            >立即投资</router-link
           >
         </li>
       </ul>
