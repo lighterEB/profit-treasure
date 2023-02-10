@@ -11,4 +11,6 @@ public interface RequestService {
     ResponseResult<?> requestProduct(PageParam pageParam, Integer prodType);
 
     ResponseResult<?> requestIndexProduct();
+
+    ResponseResult<?> requestLogin(UserInfo userInfo);
 }

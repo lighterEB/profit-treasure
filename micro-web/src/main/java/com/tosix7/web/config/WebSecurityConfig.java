@@ -27,7 +27,7 @@ public class WebSecurityConfig {
     @Autowired
     private AuthFilter authFilter;
     @Autowired
-    private MySuccessHandler mySuccessHandler
+    private MySuccessHandler mySuccessHandler;
 
 
     @Bean
@@ -45,8 +45,8 @@ public class WebSecurityConfig {
 
         httpSecurity.formLogin()
                 .loginProcessingUrl("/login")
-                .usernameParameter("UserPhone")
-                .passwordParameter("UserPWD")
+                .usernameParameter("userPhone")
+                .passwordParameter("userPassword")
                 .successHandler(mySuccessHandler)
                 .failureHandler(((request, response, exception) -> {
                     ResponseResult<Object> result = ResponseResult.loginFailed();

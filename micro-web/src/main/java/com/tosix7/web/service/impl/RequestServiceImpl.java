@@ -11,9 +11,7 @@ import com.tosix7.result.DubboResult;
 import com.tosix7.result.PageResult;
 import com.tosix7.result.ResponseResult;
 import com.tosix7.web.service.RequestService;
-import io.swagger.models.auth.In;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -86,6 +84,20 @@ public class RequestServiceImpl implements RequestService {
             return ResponseResult.failure();
         }
 
+    }
+
+    /**
+     * 登录请求
+     * @param userInfo
+     * @return
+     */
+    public ResponseResult<?> requestLogin(UserInfo userInfo) {
+        DubboResult<UserInfo> dubboResult = userService.getUserDetailByPhone(userInfo.getPhone());
+        if (dubboResult.getData() != null){
+            return ResponseResult.loginSuccess(dubboResult.getData());
+        }else{
+            return ResponseResult.userNotFound();
+        }
     }
 
 

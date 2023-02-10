@@ -304,32 +304,15 @@ export default {
     };
   },
   methods: {
-    Product: function(prodType){
-      var pageSize = "3"
-      if(prodType === "0"){
-        pageSize = "1"
-
-      }
+    Product: function(){
       myajax({
-      url: "/findProduct",
-      method: "POST",
-      data:{
-        pageNum: "1",
-        pageSize: pageSize,
-        params: {
-          prodType: prodType
-        }
-      }
+      url: "/indexProduct",
+      method: "GET",
     }).then((res) => {
       if(res.data.code == 200) {
-        if(prodType==="0"){
-          this.indexData.xinList = res.data.data.content
-        }else if(prodType==="1"){
-          this.indexData.youList = res.data.data.content
-        }else{
-          this.indexData.sanList = res.data.data.content
-        }
-        
+          this.indexData.xinList = res.data.data.newbie.content
+          this.indexData.youList = res.data.data.preferred.content
+          this.indexData.sanList = res.data.data.bulk.content
       }else{
         alert(res.data.message)
       }
@@ -349,9 +332,7 @@ export default {
         alert(res.data.message)
       }
     })
-    this.Product("0")
-    this.Product("1")
-    this.Product("2")
+    this.Product();
   }
 }
 </script>

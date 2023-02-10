@@ -13,6 +13,7 @@
         <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
         <result column="header_image" jdbcType="VARCHAR" property="headerImage"/>
+        <result column="available_money" javaType="java.math.BigDecimal" property="money"/>
     </resultMap>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
@@ -21,5 +22,14 @@
 
     <select id="selectByPhoneNumber" resultMap="BaseResultMap">
         select * from u_user where phone=#{phoneNum}
+    </select>
+
+    <select id="getUserDetailsByPhone" resultMap="BaseResultMap">
+        SELECT
+        u.id,u.phone,u.`name`,u.login_password,u.id_card,u.add_time,u.last_login_time,uf.available_money
+        FROM
+        u_user u LEFT JOIN u_finance_account uf on u.id = uf.uid
+        WHERE
+        u.phone=#{phone}
     </select>
 </mapper>

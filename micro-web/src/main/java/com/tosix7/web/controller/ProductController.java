@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
     @Autowired
     RequestService requestService;
-    @GetMapping("/indexProduct")
+    @GetMapping("/findProduct")
     @Cacheable(value = "sys:index:product")
     public ResponseResult<?> findProduct() {
         return ResponseResult.failure();

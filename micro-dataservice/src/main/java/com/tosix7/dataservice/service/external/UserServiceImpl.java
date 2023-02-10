@@ -4,6 +4,7 @@ import com.tosix7.api.service.UserService;
 import com.tosix7.dataservice.service.internal.IUserService;
 import com.tosix7.info.UserInfo;
 import com.tosix7.result.DubboResult;
+import com.tosix7.result.ResponseResult;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,4 +23,5 @@ public class UserServiceImpl implements UserService {
     public DubboResult<UserInfo> getUserDetailByPhone(String phone) {
         return DubboResult.success(iUserService.findUserDetailByPhone(phone));
     }
+
 }

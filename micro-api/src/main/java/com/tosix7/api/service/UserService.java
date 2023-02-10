@@ -2,6 +2,7 @@ package com.tosix7.api.service;
 
 import com.tosix7.info.UserInfo;
 import com.tosix7.result.DubboResult;
+import com.tosix7.result.ResponseResult;
 
 public interface UserService {
 
