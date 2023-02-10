@@ -1,9 +1,7 @@
 package com.tosix7.web.utils;
 
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.lang.Classes;
 import io.jsonwebtoken.security.Keys;
-import org.slf4j.Logger;
 
 import javax.crypto.SecretKey;
 import java.text.SimpleDateFormat;
@@ -90,7 +88,7 @@ public class JWTUtils {
         try {
             if (isSigned(token)) {
                 JwtParser jwtParser = Jwts.parserBuilder().setSigningKey(key).build();
-                jwtParser.parseClaimsJwt(token);
+                jwtParser.parseClaimsJws(token);
                 return true;
             } else {
                 return false;
@@ -110,7 +108,7 @@ public class JWTUtils {
     public static Claims getClaims(String token) {
         Claims claims = null;
         try {
-            claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJwt(token).getBody();
+            claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -127,7 +125,7 @@ public class JWTUtils {
     public static JwsHeader<?> getHeader(String token) {
         JwsHeader<?> header = null;
         try {
-            header = (JwsHeader<?>) Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJwt(token).getHeader();
+            header = (JwsHeader<?>) Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getHeader();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -151,7 +149,7 @@ public class JWTUtils {
     public static boolean isExpired(String token) {
         try {
             final Date expiration = getExpiredAt(token);
-            return expiration.after(new Date());
+            return expiration.before(new Date());
         }catch (ExpiredJwtException expiredJwtException) {
             return true;
         }

@@ -72,4 +72,13 @@ public class ResponseKey {
      */
     public static final String KAPTCHA_SESSION_KEY = "kaptcha";
 
+    /**
+     * 未登录或token失效
+     */
+    public static final String NO_LOGIN = "未登录或认证失效请重新登录";
+
+    /**
+     * 未登录或token失效状态码
+     */
+    public static final Integer NO_LOGIN_CODE = 2002;
 }

@@ -1,5 +1,6 @@
 package com.tosix7.dataservice.service.external;
 
+import com.github.pagehelper.Page;
 import com.tosix7.api.service.ProductService;
 import com.tosix7.dataservice.service.internal.IProductService;
 import com.tosix7.param.PageParam;
@@ -19,8 +20,8 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public DubboResult<PageResult> getProductByType(Integer pageNum, Integer pageSize, Integer prodType) {
-        PageResult pageResult = productService.findProductByType(pageNum, pageSize, prodType);
+    public DubboResult<PageResult> getProductByType(PageParam pageParam, Integer prodType) {
+        PageResult pageResult = productService.findProductByType(pageParam, prodType);
         return DubboResult.success(pageResult);
     }
 }

@@ -305,24 +305,26 @@ export default {
   },
   methods: {
     Product: function(prodType){
-      var pageSize = 3
-      if(prodType === 0){
-        pageSize = 1
+      var pageSize = "3"
+      if(prodType === "0"){
+        pageSize = "1"
 
       }
       myajax({
       url: "/findProduct",
-      method: "GET",
-      params:{
-        pageNum: '1',
+      method: "POST",
+      data:{
+        pageNum: "1",
         pageSize: pageSize,
-        prodType: prodType
+        params: {
+          prodType: prodType
+        }
       }
     }).then((res) => {
       if(res.data.code == 200) {
-        if(prodType===0){
+        if(prodType==="0"){
           this.indexData.xinList = res.data.data.content
-        }else if(prodType===1){
+        }else if(prodType==="1"){
           this.indexData.youList = res.data.data.content
         }else{
           this.indexData.sanList = res.data.data.content
@@ -347,9 +349,9 @@ export default {
         alert(res.data.message)
       }
     })
-    this.Product(0)
-    this.Product(1)
-    this.Product(2)
+    this.Product("0")
+    this.Product("1")
+    this.Product("2")
   }
 }
 </script>

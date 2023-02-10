@@ -1,6 +1,7 @@
 package com.tosix7.info;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -47,6 +48,46 @@ public class UserInfo implements Serializable {
      * 用户头像文件路径
      */
     private String headerImage;
+
+    /**
+     * 用户钱包金额
+     */
+    private BigDecimal money;
+
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public UserInfo(Integer id, String phone, String loginPassword, String name, String idCard, Date addTime, Date lastLoginTime, String headerImage, BigDecimal money) {
+        this.id = id;
+        this.phone = phone;
+        this.loginPassword = loginPassword;
+        this.name = name;
+        this.idCard = idCard;
+        this.addTime = addTime;
+        this.lastLoginTime = lastLoginTime;
+        this.headerImage = headerImage;
+        this.money = money;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
+                ", loginPassword='" + loginPassword + '\'' +
+                ", name='" + name + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", addTime=" + addTime +
+                ", lastLoginTime=" + lastLoginTime +
+                ", headerImage='" + headerImage + '\'' +
+                ", money=" + money +
+                '}';
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
 
     public Integer getId() {
         return id;
@@ -115,28 +156,4 @@ public class UserInfo implements Serializable {
     public UserInfo() {
     }
 
-    public UserInfo(Integer id, String phone, String loginPassword, String name, String idCard, Date addTime, Date lastLoginTime, String headerImage) {
-        this.id = id;
-        this.phone = phone;
-        this.loginPassword = loginPassword;
-        this.name = name;
-        this.idCard = idCard;
-        this.addTime = addTime;
-        this.lastLoginTime = lastLoginTime;
-        this.headerImage = headerImage;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "id=" + id +
-                ", phone='" + phone + '\'' +
-                ", loginPassword='" + loginPassword + '\'' +
-                ", name='" + name + '\'' +
-                ", idCard='" + idCard + '\'' +
-                ", addTime=" + addTime +
-                ", lastLoginTime=" + lastLoginTime +
-                ", headerImage='" + headerImage + '\'' +
-                '}';
-    }
 }

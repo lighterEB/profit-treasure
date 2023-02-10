@@ -13,7 +13,12 @@ public class IUserServiceImpl implements IUserService {
 
 
     @Override
-    public UserInfo findUserByPhone(String phoneNum) {
-        return userMapper.selectByPhoneNumber(phoneNum);
+    public UserInfo findUserByPhone(String phone) {
+        return userMapper.selectByPhoneNumber(phone);
+    }
+
+    @Override
+    public UserInfo findUserDetailByPhone(String phone) {
+        return userMapper.getUserDetailsByPhone(phone);
     }
 }

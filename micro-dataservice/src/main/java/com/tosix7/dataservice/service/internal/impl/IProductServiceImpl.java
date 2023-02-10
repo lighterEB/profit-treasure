@@ -49,10 +49,7 @@ public class IProductServiceImpl implements IProductService {
     }
 
     @Override
-    public PageResult findProductByType(Integer pageNum, Integer pageSize, Integer prodType) {
-        PageParam pageParam = new PageParam();
-        pageParam.setPageNum(pageNum);
-        pageParam.setPageSize(pageSize);
+    public PageResult findProductByType(PageParam pageParam, Integer prodType) {
         return MybatisPageHelper.findPage(pageParam, productMapper, MethodKey.FIND_BY_PRODUCT_TYPE, prodType);
     }
 }

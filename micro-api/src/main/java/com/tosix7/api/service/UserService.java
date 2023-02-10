@@ -7,8 +7,10 @@ public interface UserService {
 
     /**
      * 根据手机号查找用户信息--登录需求
-     * @param phoneNum 手机号
+     * @param phone 手机号
      * @return DubboResult<UserInfo>
      */
-    DubboResult<UserInfo> getUserByPhone(String phoneNum);
+    DubboResult<UserInfo> getUserByPhone(String phone);
+
+    DubboResult<UserInfo> getUserDetailByPhone(String phone);
 }

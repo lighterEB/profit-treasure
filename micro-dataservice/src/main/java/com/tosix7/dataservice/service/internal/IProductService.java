@@ -8,5 +8,5 @@ import com.tosix7.result.PageResult;
  * 产品查询接口
  */
 public interface IProductService extends CurdService<ProductInfo>{
-    PageResult findProductByType(Integer pageNum, Integer pageSize, Integer prodType);
+    PageResult findProductByType(PageParam pageParam, Integer prodType);
 }

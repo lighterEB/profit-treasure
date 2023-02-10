@@ -112,4 +112,11 @@ public class ResponseResult<T> implements Serializable {
     public static<Void> ResponseResult<Void> userNotFound() {
         return new ResponseResult<Void>(ResponseResultEnum.RESPONSE_USER_NOT_FOUND, null);
     }
+
+    /**
+     * 用户未登录或登录失效
+     */
+    public static ResponseResult<String> noLogin() {
+        return new ResponseResult<>(ResponseResultEnum.RESPONSE_NO_LOGIN, "");
+    }
 }

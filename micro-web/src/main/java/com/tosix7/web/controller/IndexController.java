@@ -33,6 +33,12 @@ public class IndexController {
         return requestService.requestHot();
     }
 
+    @GetMapping("/indexProduct")
+    @Cacheable(value = "sys:index:indexProduct")
+    public ResponseResult<?> indexProduct(){
+        return requestService.requestIndexProduct();
+    }
+
     @GetMapping("/code")
     public void captcha(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");

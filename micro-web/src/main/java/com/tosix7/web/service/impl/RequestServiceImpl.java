@@ -1,19 +1,24 @@
 package com.tosix7.web.service.impl;
 
+import com.github.pagehelper.PageInfo;
 import com.tosix7.api.service.IndexService;
 import com.tosix7.api.service.ProductService;
 import com.tosix7.api.service.UserService;
+import com.tosix7.constant.ProductKey;
 import com.tosix7.info.UserInfo;
+import com.tosix7.param.PageParam;
 import com.tosix7.result.DubboResult;
 import com.tosix7.result.PageResult;
 import com.tosix7.result.ResponseResult;
-import com.tosix7.web.info.UserDetails;
 import com.tosix7.web.service.RequestService;
+import io.swagger.models.auth.In;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -44,15 +49,14 @@ public class RequestServiceImpl implements RequestService {
 
     /**
      * 获取产品分页数据
-     * @param pageNum
-     * @param pageSize
+     * @param pageParam
      * @param prodType
      * @return
      */
 
     @Override
-    public ResponseResult<?> requestProduct(Integer pageNum, Integer pageSize, Integer prodType) {
-        DubboResult<PageResult> dubboResult = productService.getProductByType(pageNum, pageSize, prodType);
+    public ResponseResult<?> requestProduct(PageParam pageParam, Integer prodType) {
+        DubboResult<PageResult> dubboResult = productService.getProductByType(pageParam, prodType);
         if (dubboResult.getData() != null){
             return ResponseResult.success(dubboResult.getData());
         }else {
@@ -60,14 +64,28 @@ public class RequestServiceImpl implements RequestService {
         }
     }
 
+    /**
+     * 获取首页产品展示
+     * @return
+     */
+
     @Override
-    public ResponseResult<?> requestLogin(UserDetails userDetails) {
-        DubboResult<UserInfo> dubboResult = userService.getUserByPhone(userDetails.getPhoneNum());
-        if (dubboResult.getData() != null){
-            return ResponseResult.loginSuccess(dubboResult.getData());
-        }else{
-            return ResponseResult.userNotFound();
+    public ResponseResult<?> requestIndexProduct() {
+        PageParam pageParam = new PageParam(1, 3, null);
+        DubboResult<PageResult> bulk = productService.getProductByType(pageParam, ProductKey.BULK_CARGO);
+        DubboResult<PageResult> preferred = productService.getProductByType(pageParam, ProductKey.PREFERRED_PRODUCT);
+        pageParam.setPageSize(1);
+        DubboResult<PageResult> newbie = productService.getProductByType(pageParam, ProductKey.NEWBIE_TREASURE);
+        if (bulk.getData() != null || preferred.getData() != null || newbie.getData() != null) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("newbie", newbie.getData());
+            map.put("preferred", preferred.getData());
+            map.put("bulk", bulk.getData());
+            return ResponseResult.success(map);
+        }else {
+            return ResponseResult.failure();
         }
+
     }
 
 

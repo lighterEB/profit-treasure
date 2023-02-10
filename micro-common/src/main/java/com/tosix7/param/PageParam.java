@@ -1,12 +1,13 @@
 package com.tosix7.param;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 分页请求
  */
-public class PageParam {
+public class PageParam implements Serializable {
 
     private int pageNum = 1;
 
