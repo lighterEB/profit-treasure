@@ -107,14 +107,13 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
             <!--jwt-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
                 <version>0.11.5</version>
             </dependency>
-
+            <!--security-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>

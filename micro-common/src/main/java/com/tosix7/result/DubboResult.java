@@ -84,7 +84,7 @@ public class DubboResult<T> implements Serializable {
      */
 
     public static <T> DubboResult<T> success(T data){
-        return new DubboResult<T>(DubboResultEnum.DUBBO_SUCCESS, data);
+        return new DubboResult<>(DubboResultEnum.DUBBO_SUCCESS, data);
     }
 
     public static <T> DubboResult<T> failure(){

@@ -16,18 +16,19 @@
                 <div class="alert-input">
                     <!--<input class="form-border user-name" name="username" type="text" placeholder="您的姓名">
                     <p class="prompt_name"></p>-->
-                    <input type="text" class="form-border user-num" name="mobile" placeholder="请输入11位手机号">
+                    <input type="number" class="form-border user-num" v-model="mobile" placeholder="请输入11位手机号">
                     <p class="prompt_num"></p>
-                    <input type="password" placeholder="请输入登录密码" class="form-border user-pass" autocomplete name="password">
+                    <input type="password" placeholder="请输入登录密码" class="form-border user-pass" autocomplete v-model="password">
                     <p class="prompt_pass"></p>
                     <div class="form-yzm form-border">
                         <input class="yzm-write" type="text" placeholder="输入短信验证码">
-                        <input class="yzm-send" type="text" value="获取验证码" disabled="disabled" id="yzmBtn" readonly="readonly" >
+                        <input class="yzm-send" type="text" value="获取验证码"  id="yzmBtn" v-if="codeShow" style="color:red;" @click="getCode" >
+                        <span  type="text" id="yzmBtn" readonly="readonly" v-if="!codeShow"  style="font-size: 1px; text-align: left;" >{{ count }}秒后重新发送</span>
                     </div>
                     <p class="prompt_yan"></p>
                 </div>
                 <div class="alert-input-btn">
-                    <input type="submit" class="login-submit" value="登录">
+                    <input type="button" class="login-submit" value="登录">
                 </div>
             </form>
 
@@ -41,6 +42,7 @@
 <script>
 import HeaderView from "@/views/common/HeaderView";
 import FooterView from "@/views/common/FooterView";
+import { showToast } from 'vant';
 
 export default {
   name: "LoginView",
@@ -49,7 +51,40 @@ export default {
   },
   data() {
     return {
+        codeShow: true,
+        count: '',
+        timer:null,
+        mobile: "",
     };
+  },
+  methods: {
+    getCode() {
+        var reg = /^[1][3456789][0-9]{9}$/
+        if(reg.test(this.mobile)) {
+            showToast('验证码已发送')
+            this.$showFail
+            const TIME_COUNT = 60;
+            if (!this.timer) {
+                this.count = TIME_COUNT;
+                this.codeShow = false;
+                this.timer = setInterval(() => {
+                    if(this.count > 0 && this.count<=TIME_COUNT) {
+                        this.count--;
+                    }else {
+                        this.codeShow = true;
+                        clearInterval(this.timer);
+                        this.timer = null;
+                    }
+                }, 1000)
+            }
+            // let code = {
+            //     mobile: this.mobile,
+            //     sms_type: "login"
+            // }
+        }else {
+            showToast('手机号码格式不正确');
+        }
+    }
   },
   mounted() {
   },

@@ -9,12 +9,12 @@ public class UserDetails {
     private String idCard;
     private String token;
     private String uid;
-    private BigDecimal money;
+    private String money;
 
     public UserDetails() {
     }
 
-    public UserDetails(String phone, String name, String idCard, String token, String uid, BigDecimal money) {
+    public UserDetails(String phone, String name, String idCard, String token, String uid, String money) {
         this.phone = phone;
         this.name = name;
         this.idCard = idCard;
@@ -63,11 +63,11 @@ public class UserDetails {
         this.uid = uid;
     }
 
-    public BigDecimal getMoney() {
+    public String getMoney() {
         return money;
     }
 
-    public void setMoney(BigDecimal money) {
+    public void setMoney(String money) {
         this.money = money;
     }
 

@@ -2,6 +2,8 @@ package com.tosix7.web.utils;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.crypto.SecretKey;
 import java.text.SimpleDateFormat;
@@ -205,6 +207,5 @@ public class JWTUtils {
         System.out.println("签发时间:"+sdf.format(claims.getIssuedAt()));
         System.out.println("过期时间:"+sdf.format(claims.getExpiration()));
         System.out.println("当前时间:"+sdf.format(new Date()) );
-
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -29,10 +30,12 @@ public class AuthFilter implements Filter {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
+
     // 无token访问的路由
     String[] passPath = {
             "/sms/smsAli", "/hot", "/indexProduct"
     };
+
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
