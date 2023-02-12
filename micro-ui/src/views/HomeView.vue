@@ -231,6 +231,7 @@
 import {myajax} from "@/utils/myaxios";
 import HeaderView from "@/views/common/HeaderView";
 import FooterView from "@/views/common/FooterView";
+import {numFilter} from "@/filters/myfilter"
 
 let indexDataObject = {
   hotCountUser: 0,
@@ -326,7 +327,7 @@ export default {
     }).then((res) => {
       if (res.data.code == 200) {
         this.indexData.hotCountUser = res.data.data.hotCountUser;
-        this.indexData.hotRate = res.data.data.hotRate;
+        this.indexData.hotRate = numFilter(res.data.data.hotRate);
         this.indexData.hotCountBidMoney = res.data.data.hotCountBidMoney;
       }else{
         alert(res.data.message)

@@ -5,7 +5,7 @@
       <div class="login-flex">
         <div class="login-left">
           <p>
-            万民用户知心托付&nbsp;&nbsp;&nbsp;&nbsp;<span>12.7%</span>历史年化收益
+            万民用户知心托付&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ hotRate }}%</span>历史年化收益
           </p>
           <p>千万级技术研发投入&nbsp;&nbsp;&nbsp;&nbsp;亿级注册资本平台</p>
         </div>
@@ -23,7 +23,7 @@
               <p class="prompt_num"></p>
               <input
                 type="password"
-                placeholder="请输入6-20位英文和数字混合密码"
+                placeholder="请输入8-16位大小写字母数字字符混合密码"
                 class="form-border user-pass"
                 autocomplete
                 name="password"
@@ -72,7 +72,8 @@
 //import axios from "axios";
 import HeaderView from "@/views/common/HeaderView";
 import FooterView from "@/views/common/FooterView";
-
+import { myajax } from "@/utils/myaxios";
+import {numFilter} from "@/filters/myfilter";
 export default {
   name: "RegistView",
   components: {
@@ -81,9 +82,20 @@ export default {
   },
   data() {
     return {
+      hotRate:0,
     };
   },
   mounted() {
+    myajax({
+      url: "/hot",
+      method: "GET",
+    }).then((res) => {
+      if (res.data.code == 200) {
+        this.hotRate = numFilter(res.data.data.hotRate);
+      }else{
+        alert(res.data.message)
+      }
+    })  
   },
 };
 </script>
