@@ -20,6 +20,8 @@ public interface UserMapper {
     UserInfo getUserDetailsByPhone(String phone);
 
 
+
+
 //    int updateByPrimaryKeySelective(UserInfo record);
 //
 //    int updateByPrimaryKey(UserInfo record);

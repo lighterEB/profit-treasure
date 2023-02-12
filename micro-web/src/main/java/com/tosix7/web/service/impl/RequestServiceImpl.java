@@ -10,6 +10,7 @@ import com.tosix7.param.PageParam;
 import com.tosix7.result.DubboResult;
 import com.tosix7.result.PageResult;
 import com.tosix7.result.ResponseResult;
+import com.tosix7.web.info.UserDetails;
 import com.tosix7.web.service.RequestService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
@@ -98,6 +99,11 @@ public class RequestServiceImpl implements RequestService {
         }else{
             return ResponseResult.userNotFound();
         }
+    }
+
+    @Override
+    public ResponseResult<?> requestUpdateUser(UserDetails userDetails) {
+        return null;
     }
 
 

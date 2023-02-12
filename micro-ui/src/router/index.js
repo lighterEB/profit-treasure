@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import {showToast} from 'vant'
 
 const routes = [
   {
@@ -43,9 +44,20 @@ const router = createRouter({
 router.beforeEach((to,from,next)=>{
   console.log(from);
   let token = localStorage.getItem("token");
+  let idCard = localStorage.getItem("idCard");
+  let name = localStorage.getItem("name");
   if(token || to.path === '/tologin' || to.path === '/' || to.path === '/toregist') {
-    next();
+    if(to.path === '/usercenter'){
+      if(idCard == 'null' || name ==='null'){
+        showToast('请先进行实名认证');
+        router.push('/attestation');
+      }
+    }else{
+      next();
+    }
+    
   }else{
+    showToast('尚未登录，请登录！');
     next("/tologin");
   }
 })

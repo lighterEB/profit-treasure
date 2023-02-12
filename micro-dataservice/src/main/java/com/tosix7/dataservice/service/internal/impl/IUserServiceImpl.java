@@ -21,4 +21,9 @@ public class IUserServiceImpl implements IUserService {
     public UserInfo findUserDetailByPhone(String phone) {
         return userMapper.getUserDetailsByPhone(phone);
     }
+
+    @Override
+    public UserInfo updateUserDetailByPhone(String phone) {
+        return null;
+    }
 }

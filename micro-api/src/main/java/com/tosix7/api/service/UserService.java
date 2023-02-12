@@ -14,4 +14,6 @@ public interface UserService {
     DubboResult<UserInfo> getUserByPhone(String phone);
 
     DubboResult<UserInfo> getUserDetailByPhone(String phone);
+
+    DubboResult<UserInfo> setUserDetailByPhone(String phone);
 }

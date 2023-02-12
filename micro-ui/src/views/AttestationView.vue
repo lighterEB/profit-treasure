@@ -34,10 +34,10 @@
 import HeaderView from "@/views/common/HeaderView";
 import FooterView from "@/views/common/FooterView";
 import { myajax } from "@/utils/myaxios";
-import { showFailToast, showSuccessToast } from 'vant';
+import { showFailToast, showSuccessToast,showLoadingToast,closeToast } from 'vant';
 
 export default {
-    name: "attestationView",
+    name: "AttestationView",
     components: {
         HeaderView,
         FooterView,
@@ -56,30 +56,43 @@ export default {
             var regSfz15 = /^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/;
             if (this.username != "") {
                 if (regSfz18.test(this.sfz) || regSfz15.test(this.sfz) && regPhone.test(this.mobile)) {
+                    showLoadingToast({
+                    duration: 0,
+                    forbidClick: true,
+                    message: "认证请求中..."
+                });
                     myajax({
                         url: "/attestation",
                         method: "POST",
+                        headers: {
+                            token: localStorage.getItem('token')
+                        },
                         data: {
-                            "mobile": this.mobile,
-                            "username": this.username,
-                            "idCard": this.sfz
+                            mobile: this.mobile,
+                            username: this.username,
+                            idCard: this.sfz
                         }
                     }).then((res) => {
                         if (res.data.code == 200) {
+                            closeToast(true);
                             showSuccessToast("认证成功");
                             this.$router.push("/");
                         } else {
+                            closeToast(true);
                             showFailToast(res.data.msg);
                         }
+                    }).catch((e) => {
+                        closeToast(true);
+                        showFailToast(e);
                     })
                 }
             } else {
+                closeToast(true);
                 showFailToast("信息填写有误");
             }
         }
     },
-    mounted: {},
-};
+}
 </script>
 <style>
 

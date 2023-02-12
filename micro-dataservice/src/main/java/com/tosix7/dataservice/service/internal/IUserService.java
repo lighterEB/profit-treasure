@@ -8,4 +8,6 @@ public interface IUserService {
     UserInfo findUserByPhone(String phoneNum);
 
     UserInfo findUserDetailByPhone(String phone);
+
+    UserInfo updateUserDetailByPhone(String phone);
 }

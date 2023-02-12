@@ -23,12 +23,17 @@ public class MySuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserDetails userDetails = new UserDetails();
         User user = (User) authentication.getPrincipal();
+        System.out.println(user.toString());
         // 用户电话
         userDetails.setPhone(user.getUsername().split("#")[0]);
         // 用户uid
         userDetails.setUid(user.getUsername().split("#")[1]);
         // 余额
         userDetails.setMoney(user.getUsername().split("#")[2]);
+        // 姓名
+        userDetails.setName(user.getUsername().split("#")[3]);
+        // 身份证
+        userDetails.setIdCard(user.getUsername().split("#")[4]);
         // token
         Map<String, Object> clm = new HashMap<>();
         clm.put("phone", userDetails.getPhone());

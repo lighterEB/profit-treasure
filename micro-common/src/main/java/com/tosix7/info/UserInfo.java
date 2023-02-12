@@ -154,6 +154,9 @@ public class UserInfo implements Serializable {
     }
 
     public UserInfo() {
+        this.name = "null";
+        this.idCard = "null";
+        this.money = BigDecimal.valueOf(0);
     }
 
 }
