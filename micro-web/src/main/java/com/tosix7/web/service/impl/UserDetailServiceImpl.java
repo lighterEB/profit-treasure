@@ -26,9 +26,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @DubboReference(check = false)
     UserService userService;
 
-    @Resource
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
         DubboResult<UserInfo> result = userService.getUserDetailByPhone(phone);
@@ -37,7 +34,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (userInfo != null) {
             String money = userInfo.getMoney().setScale(2, RoundingMode.HALF_DOWN).toString();
             userDetails = User.builder()
-                    .username(phone + "#" + userInfo.getId() + "#" + money)
+                    .username(phone + "#" + userInfo.getId() + "#" + money + "#" + userInfo.getName() +"#"+userInfo.getIdCard())
                     .password(userInfo.getLoginPassword())
                     .authorities("all") // 必须添加权限，不能使用空权限建立userDetail对象
                     .build();

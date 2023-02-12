@@ -28,8 +28,6 @@ public class IndexController {
     @Autowired
     RequestService requestService;
 
-    @Autowired
-    DefaultKaptcha defaultKaptcha;
     @GetMapping("/hot")
     @Cacheable(value = RedisKey.INDEX_PRODUCT )
     public ResponseResult<?> findHot(){
@@ -42,19 +40,5 @@ public class IndexController {
         return requestService.requestIndexProduct();
     }
 
-    @GetMapping("/code")
-    public void captcha(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
-        response.setHeader("Cache-Control", "no-store, no-cache");
-        response.setContentType("image/jpeg");
-        // 生成文字验证码
-        String text = defaultKaptcha.createText();
-        // 生成图片验证码
-        BufferedImage image = defaultKaptcha.createImage(text);
-        // 保存验证码到session
-        request.getSession().setAttribute(ResponseKey.KAPTCHA_SESSION_KEY, text);
-        ServletOutputStream outputStream = response.getOutputStream();
-        ImageIO.write(image, "jpg", outputStream);
-        IOUtils.closeQuietly(outputStream);
-    }
 
 }

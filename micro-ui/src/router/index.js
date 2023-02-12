@@ -26,6 +26,11 @@ const routes = [
     path: '/details',
     name: 'details',
     component: () => import('../views/DetailsView.vue')
+  },
+  {
+    path: '/attestation',
+    name: 'attestation',
+    component: () => import('../views/AttestationView.vue')
   }
   
 ]
@@ -33,6 +38,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to,from,next)=>{
+  console.log(from);
+  let token = localStorage.getItem("token");
+  if(token || to.path === '/tologin' || to.path === '/' || to.path === '/toregist') {
+    next();
+  }else{
+    next("/tologin");
+  }
 })
 
 export default router

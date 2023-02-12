@@ -60,12 +60,22 @@ public class ResponseKey {
     /**
      * 登录失败
      */
-    public static final String LOGIN_FAILED="登录失败";
+    public static final String LOGIN_FAILED="用户名或密码错误";
 
     /**
      * 登录失败状态码
      */
     public static final Integer LOGIN_FAILED_CODE= 2000;
+
+    /**
+     * 验证码不正确
+     */
+    public static final String LOGIN_ERROR = "验证码错误或者与手机不匹配";
+
+    /**
+     * 验证码错误状态码
+     */
+    public static final Integer LOGIN_ERROR_CODE = 2005;
 
     /**
      * 验证码

@@ -119,4 +119,11 @@ public class ResponseResult<T> implements Serializable {
     public static ResponseResult<String> noLogin() {
         return new ResponseResult<>(ResponseResultEnum.RESPONSE_NO_LOGIN, "");
     }
+
+    /**
+     * 验证码错误响应
+     */
+    public static ResponseResult<String> loginCodeError() {
+        return  new ResponseResult<>(ResponseResultEnum.RESPONSE_LOGIN_CODE_ERROR, "");
+    }
 }

@@ -68,7 +68,7 @@ public class AuthFilter implements Filter {
             if ( !(code ==null || redisCode==null ) && redisCode.equals(code)) {
                 filterChain.doFilter(request, response);
             }else { // 否则返回登录失败响应
-                ResponseResult<String> result = ResponseResult.failure();
+                ResponseResult<String> result = ResponseResult.loginCodeError();
                 ObjectMapper mapper = new ObjectMapper();
                 String jsonResult = mapper.writeValueAsString(result);
                 response.getWriter().write(jsonResult);

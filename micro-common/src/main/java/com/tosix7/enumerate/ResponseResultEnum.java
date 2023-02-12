@@ -12,7 +12,8 @@ public enum ResponseResultEnum {
     RESPONSE_LOGIN_SUCCESS(ResponseKey.LOGIN_SUCCESS_CODE, ResponseKey.LOGIN_SUCCESS),
     RESPONSE_LOGIN_FAILED(ResponseKey.LOGIN_FAILED_CODE, ResponseKey.LOGIN_FAILED),
     RESPONSE_USER_NOT_FOUND(ResponseKey.USER_NOT_FOUND_CODE, ResponseKey.USER_NOT_FOUND),
-    RESPONSE_NO_LOGIN(ResponseKey.NO_LOGIN_CODE, ResponseKey.NO_LOGIN);
+    RESPONSE_NO_LOGIN(ResponseKey.NO_LOGIN_CODE, ResponseKey.NO_LOGIN),
+    RESPONSE_LOGIN_CODE_ERROR(ResponseKey.LOGIN_ERROR_CODE,ResponseKey.LOGIN_ERROR);
 
     private Integer statusCode;
     private String message;

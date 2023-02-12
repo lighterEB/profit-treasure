@@ -3,6 +3,7 @@ package com.tosix7.web.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tosix7.result.ResponseResult;
 import com.tosix7.web.filter.AuthFilter;
+import com.tosix7.web.handler.MyFailureHandler;
 import com.tosix7.web.handler.MySuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,9 @@ public class WebSecurityConfig {
     @Autowired
     private MySuccessHandler mySuccessHandler;
 
+    @Autowired
+    private MyFailureHandler myFailureHandler;
+
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -45,16 +49,10 @@ public class WebSecurityConfig {
 
         httpSecurity.formLogin()
                 .loginProcessingUrl("/login")
-                .usernameParameter("userPhone")
-                .passwordParameter("userPassword")
+                .usernameParameter("phone")
+                .passwordParameter("password")
                 .successHandler(mySuccessHandler)
-                .failureHandler(((request, response, exception) -> {
-                    ResponseResult<Object> result = ResponseResult.loginFailed();
-                    ObjectMapper mapper = new ObjectMapper();
-                    String jsonResult = mapper.writeValueAsString(result);
-                    response.getWriter().write(jsonResult);
-                    response.getWriter().close();
-                }));
+                .failureHandler(myFailureHandler);
         httpSecurity.authorizeHttpRequests()
                 .antMatchers("/login", "/sms/smsAli", "/hot", "/indexProduct").permitAll()
                 .anyRequest().authenticated();

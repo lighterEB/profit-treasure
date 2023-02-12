@@ -5,9 +5,17 @@
       <div class="login-flex">
         <div class="login-left">
           <h3>加入动力金融网</h3>
-          <p>坐享<span>{{ hotData.hotRate }}%</span>历史年化收益</p>
-          <p>平台用户<span>{{ hotData.hotCountUser }}</span>位</p>
-          <p>累计成交金额<span>{{ hotData.hotCountBidMoney }}</span>元</p>
+          <p>
+            坐享<span>{{ hotData.hotRate }}%</span>历史年化收益
+          </p>
+          <p>
+            平台用户<span>{{ hotData.hotCountUser }}</span
+            >位
+          </p>
+          <p>
+            累计成交金额<span>{{ hotData.hotCountBidMoney }}</span
+            >元
+          </p>
         </div>
         <!---->
         <div class="login-box">
@@ -36,6 +44,7 @@
                   class="yzm-write"
                   type="text"
                   placeholder="输入短信验证码"
+                  v-model="code"
                 />
                 <sapn
                   class="yzm-send"
@@ -58,7 +67,12 @@
               <p class="prompt_yan"></p>
             </div>
             <div class="alert-input-btn">
-              <input type="button" class="login-submit" value="登录" />
+              <input
+                type="button"
+                class="login-submit"
+                value="登录"
+                @click="toLogin"
+              />
             </div>
           </form>
         </div>
@@ -71,8 +85,8 @@
 import HeaderView from "@/views/common/HeaderView";
 import FooterView from "@/views/common/FooterView";
 import { showSuccessToast, showFailToast } from "vant";
-import {myajax} from "@/utils/myaxios";
-import {numFilter} from "@/filters/myfilter";
+import { myajax } from "@/utils/myaxios";
+import { numFilter } from "@/filters/myfilter";
 
 export default {
   name: "LoginView",
@@ -87,11 +101,12 @@ export default {
       timer: null,
       mobile: "",
       password: "",
+      code: "",
       hotData: {
-        hotRate:0,
-        hotCountBidMoney:0,
-        hotCountUser:0
-      }
+        hotRate: 0,
+        hotCountBidMoney: 0,
+        hotCountUser: 0,
+      },
     };
   },
   methods: {
@@ -126,6 +141,25 @@ export default {
         showFailToast("手机号码格式不正确");
       }
     },
+    toLogin() {
+      if (this.phone != "" && this.code != "" && this.password != "") {
+        myajax({
+          url: "/login",
+          method: "POST",
+          data: {
+            phone: this.mobile,
+            code: this.code,
+          },
+        }).then((res) => {
+          if (res.data.code == 200) {
+            let data = res.data;
+            return;
+          }
+        });
+      }else{
+        showFailToast("请正确填写信息");
+      }
+    },
   },
   mounted() {
     myajax({
@@ -135,10 +169,10 @@ export default {
       if (res.data.code == 200) {
         this.hotData = res.data.data;
         this.hotData.hotRate = numFilter(this.hotData.hotRate);
-      }else{
-        alert(res.data.message)
+      } else {
+        alert(res.data.message);
       }
-    })
+    });
   },
 };
 </script>
