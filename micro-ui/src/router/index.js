@@ -51,6 +51,8 @@ router.beforeEach((to,from,next)=>{
       if(idCard == 'null' || name ==='null'){
         showToast('请先进行实名认证');
         router.push('/attestation');
+      }else {
+        next();
       }
     }else{
       next();

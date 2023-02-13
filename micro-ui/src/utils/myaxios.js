@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showFailToast } from "vant";
 
 var instance = axios.create({
     baseURL: "/myApi"
@@ -23,6 +24,7 @@ instance.interceptors.response.use(function (response) {
             return
     }
 },(error)=>{
+    showFailToast('网络异常，请求失败');
     return Promise.reject(error);
 })
 

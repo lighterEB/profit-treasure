@@ -35,8 +35,12 @@
   <script>
   export default {
     name: 'HeadView',
-    props: {
-  
+    data() {
+      return {
+        token: localStorage.getItem('token'),
+        name: localStorage.getItem('name'),
+        money: localStorage.getItem('money')
+      }
     }
   }
   </script>
