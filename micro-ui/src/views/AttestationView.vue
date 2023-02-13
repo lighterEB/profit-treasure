@@ -19,7 +19,7 @@
                         <i class="fa fa-square-o"></i>我已阅读并同意<a href="javascript:;" target="_blank">《动力金融网注册服务协议》</a>
                     </div>
                     <div class="alert-input-btn">
-                        <input type="submit" class="login-submit" value="认证" />
+                        <input type="button" class="login-submit" value="认证" @click="goAttestation" />
                     </div>
                 </form>
                 <div class="login-skip">
@@ -50,45 +50,49 @@ export default {
         };
     },
     methods: {
-        getCode() {
-            var regPhone = /^[1][3456789][0-9]{9}$/;
+        goAttestation() {
+            var regPhone = /^[1][3456789]{2}[0-9]{8}$/;
             var regSfz18 = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
             var regSfz15 = /^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/;
             if (this.username != "") {
-                if (regSfz18.test(this.sfz) || regSfz15.test(this.sfz) && regPhone.test(this.mobile)) {
+                if ((regSfz18.test(this.sfz) || regSfz15.test(this.sfz)) && regPhone.test(this.mobile)) {
                     showLoadingToast({
                     duration: 0,
                     forbidClick: true,
                     message: "认证请求中..."
                 });
                     myajax({
-                        url: "/attestation",
+                        url: "/attestationUser",
                         method: "POST",
                         headers: {
                             token: localStorage.getItem('token')
                         },
                         data: {
-                            mobile: this.mobile,
-                            username: this.username,
-                            idCard: this.sfz
+                            phone: this.mobile,
+                            name: this.username,
+                            idCard: this.sfz,
+                            uid: localStorage.getItem('uid')
                         }
                     }).then((res) => {
                         if (res.data.code == 200) {
                             closeToast(true);
                             showSuccessToast("认证成功");
+                            localStorage.setItem("name", res.data.data.name);
+                            localStorage.setItem("idCard", res.data.data.idCard);
                             this.$router.push("/");
                         } else {
                             closeToast(true);
-                            showFailToast(res.data.msg);
+                            showFailToast(res.data);
                         }
                     }).catch((e) => {
                         closeToast(true);
                         showFailToast(e);
                     })
+                }else{
+                    showFailToast("请填写正确的身份证或电话号码");
                 }
             } else {
-                closeToast(true);
-                showFailToast("信息填写有误");
+                showFailToast("请填写姓名");
             }
         }
     },

@@ -12,6 +12,7 @@ import com.tosix7.result.PageResult;
 import com.tosix7.result.ResponseResult;
 import com.tosix7.web.info.UserDetails;
 import com.tosix7.web.service.RequestService;
+import org.apache.catalina.User;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
@@ -103,7 +104,13 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public ResponseResult<?> requestUpdateUser(UserDetails userDetails) {
-        return null;
+        System.out.println(userDetails.toString());
+        DubboResult<UserInfo> dubboResult = userService.setUserDetailByPhone(userDetails.getPhone(), userDetails.getName(), userDetails.getIdCard(), userDetails.getUid());
+        if(dubboResult.getData() != null){
+            return ResponseResult.success(dubboResult.getData());
+        }else {
+            return ResponseResult.userNotFound();
+        }
     }
 
 

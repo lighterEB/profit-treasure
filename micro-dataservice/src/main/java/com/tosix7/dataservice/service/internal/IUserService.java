@@ -9,5 +9,5 @@ public interface IUserService {
 
     UserInfo findUserDetailByPhone(String phone);
 
-    UserInfo updateUserDetailByPhone(String phone);
+    Integer updateUserDetailByPhone(String phone, String name, String idCard, String uid);
 }

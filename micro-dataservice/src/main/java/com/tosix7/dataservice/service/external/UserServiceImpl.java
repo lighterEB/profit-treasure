@@ -24,4 +24,15 @@ public class UserServiceImpl implements UserService {
         return DubboResult.success(iUserService.findUserDetailByPhone(phone));
     }
 
+    @Override
+    public DubboResult<UserInfo> setUserDetailByPhone(String phone, String name, String idCard, String uid) {
+        Integer res =  iUserService.updateUserDetailByPhone(phone,name,idCard, uid);
+        if (res < 1) {
+            return DubboResult.failure();
+        }else {
+            UserInfo userInfo = iUserService.findUserDetailByPhone(phone);
+            return DubboResult.success(userInfo);
+        }
+    }
+
 }

@@ -5,6 +5,7 @@ import com.tosix7.dataservice.service.internal.IUserService;
 import com.tosix7.info.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class IUserServiceImpl implements IUserService {
@@ -23,7 +24,8 @@ public class IUserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserInfo updateUserDetailByPhone(String phone) {
-        return null;
+    @Transactional
+    public Integer updateUserDetailByPhone(String phone, String name, String idCard, String uid) {
+        return userMapper.updateUserDetailsByPhone(phone, name, idCard, uid);
     }
 }

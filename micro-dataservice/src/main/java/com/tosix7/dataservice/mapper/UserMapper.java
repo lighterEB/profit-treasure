@@ -19,7 +19,7 @@ public interface UserMapper {
 
     UserInfo getUserDetailsByPhone(String phone);
 
-
+    Integer updateUserDetailsByPhone(String phone, String name, String idCard, String uid);
 
 
 //    int updateByPrimaryKeySelective(UserInfo record);

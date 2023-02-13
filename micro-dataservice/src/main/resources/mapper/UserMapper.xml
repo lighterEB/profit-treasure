@@ -32,4 +32,8 @@
         WHERE
         u.phone=#{phone}
     </select>
+
+    <update id="updateUserDetailsByPhone">
+        UPDATE u_user SET name=#{param2},id_card=#{param3} WHERE phone=#{param1} AND id=#{param4}
+    </update>
 </mapper>

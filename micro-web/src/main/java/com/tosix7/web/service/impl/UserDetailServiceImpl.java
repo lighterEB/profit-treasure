@@ -34,7 +34,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (userInfo != null) {
             String money = userInfo.getMoney().setScale(2, RoundingMode.HALF_DOWN).toString();
             userDetails = User.builder()
-                    .username(phone + "#" + userInfo.getId() + "#" + money + "#" + userInfo.getName() + "#" + userInfo.getIdCard())
+                    .username(phone + "#" + userInfo.getId() + "#" + money + "#" + ((userInfo.getName().isEmpty())?"null":userInfo.getName()) + "#" + ((userInfo.getIdCard().isEmpty())?"null":userInfo.getIdCard()))
                     .password(userInfo.getLoginPassword())
                     .authorities("all") // 必须添加权限，不能使用空权限建立userDetail对象
                     .build();

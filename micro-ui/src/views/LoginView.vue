@@ -130,6 +130,7 @@ export default {
                         localStorage.setItem("phone", data.phone);
                         localStorage.setItem("name", data.name);
                         localStorage.setItem("idCard", data.idCard);
+                        localStorage.setItem("uid", data.uid);
                         if (data.name == "null" || data.idCard == "null") {
                             closeToast(true);
                             showConfirmDialog({
